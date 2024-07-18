@@ -1259,6 +1259,15 @@ on boot
 
     class_start core
 
+    # Add a cpuset for kswapd-like thread
+    # We do not want kswapd-like thread running on super-big-core
+    mkdir /dev/cpuset/kswapd-like
+    write /dev/cpuset/kswapd-like/cpus 0-6
+    write /dev/cpuset/kswapd-like/mems 0
+    chown system system /dev/cpuset/kswapd-like
+    chown system system /dev/cpuset/kswapd-like/tasks
+    chmod 0660 /dev/cpuset/kswapd-like/tasks
+
 on nonencrypted
     class_start main
     class_start late_start
