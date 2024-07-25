@@ -1425,3 +1425,5 @@ on property:persist.device_config.mglru_native.lru_gen_config=all
 on post-fs
     # Zram
     write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/swappiness 100
+    setprop sys.sysctl.swappiness 100
