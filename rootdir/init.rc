@@ -1421,3 +1421,7 @@ on property:persist.device_config.mglru_native.lru_gen_config=core_and_nonleaf_y
   write /sys/kernel/mm/lru_gen/enabled 5
 on property:persist.device_config.mglru_native.lru_gen_config=all
   write /sys/kernel/mm/lru_gen/enabled 7
+  
+on post-fs
+    # Zram
+    write /proc/sys/vm/page-cluster 0
