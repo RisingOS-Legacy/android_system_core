@@ -1475,6 +1475,30 @@ on property:persist.sys.device_power_mode=conservative
     write /proc/sys/vm/dirty_ratio 5
     write /proc/sys/vm/dirty_expire_centisecs 500
     write /proc/sys/vm/dirty_writeback_centisecs 500
+    write /sys/devices/system/cpu/cpu0/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu0/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu0/cpufreq/conservative/up_threshold 95
+    write /sys/devices/system/cpu/cpu1/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu1/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu1/cpufreq/conservative/up_threshold 95
+    write /sys/devices/system/cpu/cpu2/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu2/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu2/cpufreq/conservative/up_threshold 95
+    write /sys/devices/system/cpu/cpu3/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu3/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu3/cpufreq/conservative/up_threshold 95
+    write /sys/devices/system/cpu/cpu4/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu4/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu4/cpufreq/conservative/up_threshold 95
+    write /sys/devices/system/cpu/cpu5/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu5/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu5/cpufreq/conservative/up_threshold 95
+    write /sys/devices/system/cpu/cpu6/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu6/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu6/cpufreq/conservative/up_threshold 95
+    write /sys/devices/system/cpu/cpu7/cpufreq/conservative/down_threshold 50
+    write /sys/devices/system/cpu/cpu7/cpufreq/conservative/freq_step 3
+    write /sys/devices/system/cpu/cpu7/cpufreq/conservative/up_threshold 95
 on property:persist.sys.device_power_mode=powersave
     write /dev/cpuset/display/cpus 0-3
     write /dev/cpuset/audio-app/cpus 1-2
@@ -1497,3 +1521,25 @@ on property:persist.sys.device_power_mode=default
     write /proc/sys/vm/dirty_ratio 30
     write /proc/sys/vm/dirty_expire_centisecs 3000
     write /proc/sys/vm/dirty_writeback_centisecs 3000
+
+on property:persist.sys.ramboost_enabled=false
+    write /proc/sys/vm/compaction_proactiveness 20
+    write /proc/sys/vm/swappiness 60
+    write /proc/sys/vm/swap_ratio_enable 0
+    write /proc/sys/vm/swap_ratio 100
+    write /proc/sys/vm/extfrag_threshold 500
+    write /sys/kernel/mm/lru_gen/enabled 0
+    write /proc/sys/vm/watermark_boost_factor 0
+    write /proc/sys/vm/page_lock_unfairness 5
+on property:persist.sys.ramboost_enabled=true
+    write /proc/sys/vm/compaction_proactiveness 0
+    write /sys/kernel/mm/lru_gen/enabled 5
+    write /proc/sys/vm/swappiness 160
+    write /proc/sys/vm/swap_ratio_enable 1
+    write /proc/sys/vm/swap_ratio 70
+    write /proc/sys/vm/extfrag_threshold 750
+    write /proc/sys/vm/watermark_boost_factor 1
+    write /proc/sys/vm/page_lock_unfairness 1
+    
+#on property:sys.boot_completed=1 && property:persist.sys.ramboost_enabled=true && property:persist.sys.ramboost_size=*
+#exec -- /system/bin/ram_boost.sh ${persist.sys.ramboost_size}

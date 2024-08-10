@@ -292,6 +292,7 @@ cc_defaults {
                 "ueventd.rc",
                 "e2fsdroid",
                 "extra_free_kbytes",
+                "ram_boost",
                 "make_f2fs",
                 "mke2fs",
                 "sload_f2fs",
@@ -650,5 +651,11 @@ cc_library_host_static {
 sh_binary {
     name: "extra_free_kbytes",
     src: "extra_free_kbytes.sh",
+    filename_from_src: true,
+}
+
+sh_binary {
+    name: "ram_boost",
+    src: "ram_boost.sh",
     filename_from_src: true,
 }
