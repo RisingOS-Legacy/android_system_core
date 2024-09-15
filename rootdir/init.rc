@@ -1543,3 +1543,10 @@ on property:persist.sys.ramboost_enabled=true
     
 #on property:sys.boot_completed=1 && property:persist.sys.ramboost_enabled=true && property:persist.sys.ramboost_size=*
 #exec -- /system/bin/ram_boost.sh ${persist.sys.ramboost_size}
+
+# Health Charge edits
+on property:sys.boot_completed=1 && property:persist.sys.hct_path=* && property:persist.sys.health_charge_threshold=*
+    write ${persist.sys.hct_path} ${persist.sys.health_charge_threshold}
+    
+on property:sys.boot_completed=1 && property:persist.sys.hct_start_path=* && property:persist.sys.health_charge_threshold=*
+    write ${persist.sys.hct_start_path} ${persist.sys.health_charge_threshold_start}
